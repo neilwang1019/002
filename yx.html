@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auto Reload Page</title>
+</head>
+<body>
+    <h1>這個頁面會在用戶載入網站後的10分鐘自動重新載入到指定的連結</h1>
+    <iframe src="https://forms.gle/V8DCq9ukgU3GZode6" width="100%" height="500px"></iframe>
+    <p>當前時間：<span id="time"></span></p>
+    <script>
+        // 設定10分鐘後自動重新載入頁面
+        setTimeout(function() {
+            window.location.href = 'https://forms.gle/V8DCq9ukgU3GZode6';
+        }, 600000); // 600000毫秒等於10分鐘
+
+        // 每秒更新一次當前時間顯示
+        function updateTime() {
+            var now = new Date();
+            var timeString = now.getHours() + ':' + now.getMinutes() + ':' + now.getSeconds();
+            document.getElementById('time').textContent = timeString;
+        }
+        setInterval(updateTime, 1000);  // 每秒更新一次時間顯示
+        updateTime();  // 頁面加載後立即更新一次時間顯示
+    </script>
+</body>
+</html>
