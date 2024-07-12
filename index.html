@@ -109,13 +109,9 @@
     font-weight: bold;
     letter-spacing: 2px;
   }
-  #loading {
-    text-align: center;
-    color: #8B4513;
-    font-style: italic;
-  }
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Sans+TC&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
 </head><body>
   <div class="container fade-in">
     <h1>Neil道人的太虛符咒系統</h1>
@@ -155,8 +151,6 @@
       <button onclick="addCode()">鑄造新符咒</button>
       <button onclick="generateRandomCode()">召喚隨機符咒</button>
 
-      <h3>已鑄造的符咒</h3>
-      <div id="loading">正在喚醒沉睡的符咒...</div>
       <div class="code-list" id="code-list"></div>
     </div>
 
@@ -178,30 +172,13 @@
 
     // 模擬從伺服器加載符咒數據
     function loadCodes() {
-      // 顯示加載中的提示
-      document.getElementById('loading').style.display = 'block';
-      
-      // 模擬從伺服器讀取數據的延遲
-      setTimeout(() => {
-        // 在實際應用中，這裡應該是一個從伺服器獲取數據的AJAX請求
-        // 為了模擬，我們假設從本地存儲中讀取
-        const savedCodes = localStorage.getItem('codes');
-        if (savedCodes) {
-          codes = JSON.parse(savedCodes);
-        } else {
-          // 如果沒有保存的代碼，創建一些示例代碼
-          codes = [
-            { code: "QWER1234", description: "增強精神力", remainingUses: 5 },
-            { code: "ASDF5678", description: "提升身體素質", remainingUses: 3 },
-            { code: "ZXCV9012", description: "招來財運", remainingUses: 1 }
-          ];
-          saveCodes();
-        }
+      // 在實際應用中，這裡應該是一個從伺服器獲取數據的AJAX請求
+      // 為了模擬，我們假設從本地存儲中讀取
+      const savedCodes = localStorage.getItem('codes');
+      if (savedCodes) {
+        codes = JSON.parse(savedCodes);
         updateCodeList();
-        
-        // 隱藏加載中的提示
-        document.getElementById('loading').style.display = 'none';
-      }, 1000); // 模擬1秒的加載時間
+      }
     }
 
     // 模擬將符咒數據保存到伺服器
@@ -238,9 +215,6 @@
             codes.splice(foundCodeIndex, 1);
           }
           saveCodes();
-          if (isAdminLoggedIn) {
-            updateCodeList();
-          }
         } else {
           result.textContent = '此符咒力量已耗盡，無法再次使用';
           result.className = 'error';
@@ -257,7 +231,7 @@
         isAdminLoggedIn = true;
         document.getElementById('admin-panel').style.display = 'block';
         document.getElementById('admin-login').style.display = 'none';
-        loadCodes();
+        updateCodeList();
       } else {
         alert('太虛密語有誤，請重新參悟');
       }
@@ -333,7 +307,8 @@
       }
     }
 
-    // 初始化時顯示一條隨機符咒
+    // 初始化時載入已儲存的符咒和顯示一條隨機符咒
+    loadCodes();
     showRandomTalisman();
   </script>
 </body></html>
