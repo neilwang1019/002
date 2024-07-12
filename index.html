@@ -1,7 +1,7 @@
 <html><head><base href="https://neil-daoren.websim.ai/"><title>Neil道人的太虛符咒系統</title><style>
   body {
     font-family: 'Noto Sans TC', sans-serif;
-    background-image: url('https://source.unsplash.com/1600x900/?chinese,calligraphy');
+    background-image: url('https://source.unsplash.com/1600x900/?ancient,chinese');
     background-size: cover;
     background-attachment: fixed;
     margin: 0;
@@ -11,7 +11,7 @@
   .container {
     max-width: 800px;
     margin: 0 auto;
-    background-color: rgba(255, 255, 240, 0.95);
+    background-color: rgba(255, 255, 255, 0.9);
     padding: 30px;
     border-radius: 12px;
     box-shadow: 0 0 20px rgba(0,0,0,0.2);
@@ -19,7 +19,7 @@
   h1, h2 {
     color: #8B4513;
     text-align: center;
-    font-family: 'Noto Serif TC', serif;
+    font-family: 'Ma Shan Zheng', cursive;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
   }
   .form-group {
@@ -66,7 +66,7 @@
     margin-top: 30px;
   }
   .code-item {
-    background-color: rgba(255, 248, 220, 0.7);
+    background-color: #f9f9f9;
     border: 1px solid #ddd;
     padding: 15px;
     margin-bottom: 15px;
@@ -96,7 +96,6 @@
     text-align: center;
     margin-top: 20px;
     color: #8B4513;
-    font-family: 'Noto Serif TC', serif;
   }
   @keyframes fadeIn {
     from { opacity: 0; }
@@ -110,15 +109,26 @@
     font-weight: bold;
     letter-spacing: 2px;
   }
+  .scrambled {
+    font-family: 'Noto Sans TC', sans-serif;
+    font-weight: normal;
+    letter-spacing: normal;
+    transition: all 0.5s ease;
+  }
+  .scrambled:hover {
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    letter-spacing: 2px;
+  }
 </style>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&family=Noto+Serif+TC:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Sans+TC&display=swap" rel="stylesheet">
 </head><body>
   <div class="container fade-in">
     <h1>Neil道人的太虛符咒系統</h1>
     
     <div id="user-panel">
       <div class="form-group">
-        <label for="redeem-code">符咒口訣：</label>
+        <label for="redeem-code">符咒口訣:</label>
         <input type="text" id="redeem-code" placeholder="請輸入太虛符咒口訣">
       </div>
       <button onclick="redeemCode()">啟動符咒之力</button>
@@ -128,7 +138,7 @@
     <div id="admin-login">
       <h2>太虛洞天入口</h2>
       <div class="form-group">
-        <label for="admin-password">太虛密語：</label>
+        <label for="admin-password">太虛密語:</label>
         <input type="password" id="admin-password">
       </div>
       <button onclick="adminLogin()">步入洞天</button>
@@ -137,15 +147,15 @@
     <div id="admin-panel" style="display: none;">
       <h2>太虛符咒鑄造爐</h2>
       <div class="form-group">
-        <label for="new-code">新符咒口訣：</label>
+        <label for="new-code">新符咒口訣:</label>
         <input type="text" id="new-code" placeholder="輸入新符咒口訣或留空自動生成">
       </div>
       <div class="form-group">
-        <label for="code-description">符咒玄機：</label>
+        <label for="code-description">符咒玄機:</label>
         <input type="text" id="code-description" placeholder="描述此符咒的玄妙效果">
       </div>
       <div class="form-group">
-        <label for="code-limit">使用次數限制：</label>
+        <label for="code-limit">使用次數限制:</label>
         <input type="number" id="code-limit" placeholder="設定此符咒可被使用的次數" min="1">
       </div>
       <button onclick="addCode()">鑄造新符咒</button>
@@ -191,6 +201,13 @@
       talismanElement.textContent = talismans[Math.floor(Math.random() * talismans.length)];
     }
 
+    function scrambleText(text) {
+      const chars = '天地玄宗，萬氣本根太上台星應變無停驅邪縛魅保命護身智慧明澈福祿永馨乾坤無極太虛常清';
+      return text.split('').map(char => 
+        Math.random() > 0.5 ? chars[Math.floor(Math.random() * chars.length)] : char
+      ).join('');
+    }
+
     function redeemCode() {
       const code = document.getElementById('redeem-code').value;
       const result = document.getElementById('redeem-result');
@@ -200,7 +217,7 @@
         const foundCode = codes[foundCodeIndex];
         if (foundCode.remainingUses > 0) {
           foundCode.remainingUses--;
-          result.innerHTML = `太虛符咒之力已啟動：<span class="code">${foundCode.code}</span> - ${foundCode.description}<br>剩餘使用次數：${foundCode.remainingUses}`;
+          result.innerHTML = `太虛符咒之力已啟動: <span class="code">${foundCode.code}</span> - <span class="scrambled" title="${foundCode.description}">${scrambleText(foundCode.description)}</span><br>剩餘使用次數: ${foundCode.remainingUses}`;
           result.className = 'success';
           showRandomTalisman();
           if (foundCode.remainingUses === 0) {
@@ -266,9 +283,9 @@
         const codeItem = document.createElement('div');
         codeItem.className = 'code-item';
         codeItem.innerHTML = `
-          <p><strong>符咒口訣：</strong> <span class="code">${code.code}</span></p>
-          <p><strong>玄機：</strong> ${code.description}</p>
-          <p><strong>剩餘使用次數：</strong> ${code.remainingUses}</p>
+          <p><strong>符咒口訣:</strong> <span class="code">${code.code}</span></p>
+          <p><strong>玄機:</strong> <span class="scrambled" title="${code.description}">${scrambleText(code.description)}</span></p>
+          <p><strong>剩餘使用次數:</strong> ${code.remainingUses}</p>
           <button onclick="editCode(${index})">修改符咒</button>
           <button onclick="deleteCode(${index})">銷毀符咒</button>
         `;
