@@ -1,17 +1,11 @@
-<html><head><base href="https://gift.cangui.com">
-<meta charset="UTF-8">
-<title>蒼顗道人的仙緣兌換系統</title>
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&display=swap');
-
+<html><head><base href="https://neil-daoren.websim.ai/"><title>Neil道人的太虛符咒系統</title><style>
   body {
-    font-family: 'Ma Shan Zheng', cursive;
-    background-color: #f0f0f0;
-    margin: 0;
-    padding: 20px;
-    background-image: url('https://example.com/taoist-mountain.jpg');
+    font-family: 'Noto Sans TC', sans-serif;
+    background-image: url('https://source.unsplash.com/1600x900/?ancient,chinese');
     background-size: cover;
     background-attachment: fixed;
+    margin: 0;
+    padding: 20px;
     color: #333;
   }
   .container {
@@ -19,290 +13,325 @@
     margin: 0 auto;
     background-color: rgba(255, 255, 255, 0.9);
     padding: 30px;
-    border-radius: 15px;
+    border-radius: 12px;
     box-shadow: 0 0 20px rgba(0,0,0,0.2);
   }
-  h1, h2, h3 {
+  h1, h2 {
     color: #8B4513;
     text-align: center;
+    font-family: 'Ma Shan Zheng', cursive;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
   }
-  h1 {
-    font-size: 3em;
-    margin-bottom: 30px;
+  .form-group {
+    margin-bottom: 20px;
   }
-  .login-options, .contact-options {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 30px;
-  }
-  .login-btn, .contact-btn, .redeem-btn, .submit-btn {
-    margin: 0 10px;
-    padding: 12px 24px;
-    border: none;
-    border-radius: 50px;
-    cursor: pointer;
-    font-size: 18px;
-    transition: all 0.3s ease;
-    font-family: 'Ma Shan Zheng', cursive;
-  }
-  .login-btn {
-    background-color: #8B4513;
-    color: white;
-  }
-  .login-btn:hover {
-    background-color: #A0522D;
-    transform: translateY(-3px);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-  }
-  .contact-btn {
-    color: white;
-  }
-  .contact-btn.fb {
-    background-color: #3b5998;
-  }
-  .contact-btn.email {
-    background-color: #D44638;
-  }
-  .contact-btn.discord {
-    background-color: #7289DA;
-  }
-  .contact-btn:hover {
-    opacity: 0.9;
-    transform: translateY(-3px);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-  }
-  .redeem-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 30px;
+  label {
+    display: block;
+    margin-bottom: 8px;
+    color: #4a4a4a;
+    font-weight: bold;
   }
   input[type="text"], input[type="password"], input[type="number"] {
-    width: 300px;
-    padding: 12px;
-    margin-bottom: 15px;
-    border: 2px solid #8B4513;
-    border-radius: 50px;
-    font-family: 'Ma Shan Zheng', cursive;
-    font-size: 18px;
-    text-align: center;
-  }
-  .redeem-btn, .submit-btn {
-    background-color: #4CAF50;
-    color: white;
-  }
-  .redeem-btn:hover, .submit-btn:hover {
-    background-color: #45a049;
-    transform: translateY(-3px);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-  }
-  .admin-panel {
-    margin-top: 40px;
-    border-top: 2px solid #8B4513;
-    padding-top: 30px;
-    display: none;
-  }
-  .logout-btn {
-    background-color: #f44336;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 50px;
-    cursor: pointer;
-    font-size: 16px;
-    margin-top: 20px;
-    transition: all 0.3s ease;
-    font-family: 'Ma Shan Zheng', cursive;
-  }
-  .logout-btn:hover {
-    background-color: #d32f2f;
-    transform: translateY(-3px);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-  }
-  table {
     width: 100%;
-    border-collapse: separate;
-    border-spacing: 0;
-    margin-top: 30px;
-    background-color: white;
-    border-radius: 15px;
-    overflow: hidden;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
   }
-  th, td {
-    padding: 15px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
+  input[type="text"]:focus, input[type="password"]:focus, input[type="number"]:focus {
+    border-color: #8B4513;
+    outline: none;
+    box-shadow: 0 0 5px rgba(139, 69, 19, 0.5);
   }
-  th {
+  button {
     background-color: #8B4513;
     color: white;
-  }
-  tr:last-child td {
-    border-bottom: none;
-  }
-  .delete-btn {
-    background-color: #f44336;
-    color: white;
+    padding: 12px 20px;
     border: none;
-    padding: 8px 16px;
-    border-radius: 50px;
+    border-radius: 6px;
     cursor: pointer;
-    transition: all 0.3s ease;
-    font-family: 'Ma Shan Zheng', cursive;
-  }
-  .delete-btn:hover {
-    background-color: #d32f2f;
-    transform: translateY(-2px);
-    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-  }
-  .footer {
-    text-align: center;
-    margin-top: 40px;
-    font-style: italic;
-    color: #666;
     font-size: 16px;
+    transition: background-color 0.3s ease;
+  }
+  button:hover {
+    background-color: #A0522D;
+  }
+  .admin-panel {
+    margin-top: 30px;
+    border-top: 2px solid #8B4513;
+    padding-top: 30px;
+  }
+  .code-list {
+    margin-top: 30px;
+  }
+  .code-item {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .code-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  }
+  .error {
+    color: #D8000C;
+    background-color: #FFD2D2;
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 6px;
+  }
+  .success {
+    color: #4F8A10;
+    background-color: #DFF2BF;
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 6px;
+  }
+  .talisman {
+    font-style: italic;
+    text-align: center;
+    margin-top: 20px;
+    color: #8B4513;
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  .fade-in {
+    animation: fadeIn 1s ease-in;
+  }
+  .code {
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    letter-spacing: 2px;
   }
 </style>
-</head>
-<body>
-  <div class="container">
-    <h1>Neil道人的仙緣兌換系統</h1>
+<link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Sans+TC&display=swap" rel="stylesheet">
+</head><body>
+  <div class="container fade-in">
+    <h1>Neil道人的太虛符咒系統</h1>
     
-    <div class="login-options">
-      <button id="adminLoginBtn" class="login-btn">Neil道人登入</button>
-    </div>
-    
-    <form class="redeem-form">
-      <input type="text" placeholder="輸入兌換碼" required>
-      <button type="submit" class="redeem-btn">兌換仙緣</button>
-    </form>
-    
-    <div id="adminPanel" class="admin-panel">
-      <h2>道長管理面板</h2>
-      <form id="addCodeForm">
-        <input type="text" placeholder="新增兌換碼" required>
-        <input type="text" placeholder="禮包內容" required>
-        <input type="number" placeholder="可用次數" required>
-        <button type="submit" class="submit-btn">新增仙緣兌換碼</button>
-      </form>
-      
-      <h3>已建立的仙緣兌換碼列表</h3>
-      <table id="codeList">
-        <thead>
-          <tr>
-            <th>兌換碼</th>
-            <th>仙緣內容</th>
-            <th>可用次數</th>
-            <th>操作</th>
-          </tr>
-        </thead>
-        <tbody>
-          <!-- 兌換碼列表將在這裡動態生成 -->
-        </tbody>
-      </table>
-      
-      <button id="logoutBtn" class="logout-btn">道長離開</button>
+    <div id="user-panel">
+      <div class="form-group">
+        <label for="redeem-code">符咒口訣:</label>
+        <input type="text" id="redeem-code" placeholder="請輸入太虛符咒口訣">
+      </div>
+      <button onclick="redeemCode()">啟動符咒之力</button>
+      <p id="redeem-result"></p>
     </div>
 
-    <div class="contact-options">
-      <button class="contact-btn fb" onclick="window.open('https://www.messenger.com/t/61553975857684', '_blank')">Facebook</button>
-      <button class="contact-btn email" onclick="window.location.href='mailto:neilwang1019@gmail.com'">Email</button>
-      <button class="contact-btn discord" onclick="window.open('https://discord.com/channels/@me/1140094341587673188', '_blank')">Discord</button>
+    <div id="admin-login">
+      <h2>太虛洞天入口</h2>
+      <div class="form-group">
+        <label for="admin-password">太虛密語:</label>
+        <input type="password" id="admin-password">
+      </div>
+      <button onclick="adminLogin()">步入洞天</button>
     </div>
 
-    <div class="footer">
-      本系統由Neil道人架設</a>
+    <div id="admin-panel" style="display: none;">
+      <h2>太虛符咒鑄造爐</h2>
+      <div class="form-group">
+        <label for="new-code">新符咒口訣:</label>
+        <input type="text" id="new-code" placeholder="輸入新符咒口訣或留空自動生成">
+      </div>
+      <div class="form-group">
+        <label for="code-description">符咒玄機:</label>
+        <input type="text" id="code-description" placeholder="描述此符咒的玄妙效果">
+      </div>
+      <div class="form-group">
+        <label for="code-limit">使用次數限制:</label>
+        <input type="number" id="code-limit" placeholder="設定此符咒可被使用的次數" min="1">
+      </div>
+      <button onclick="addCode()">鑄造新符咒</button>
+      <button onclick="generateRandomCode()">召喚隨機符咒</button>
+
+      <div class="code-list" id="code-list"></div>
     </div>
+
+    <p class="talisman" id="talisman"></p>
   </div>
 
-  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  <script>
+    let codes = [];
+    const adminPassword = 'admin';
     let isAdminLoggedIn = false;
-    let giftCodes = [
-      { code: 'XIANYU2023', content: '初次踏入修真之路禮包', uses: 1000 },
-      { code: 'QIGONG50', content: '五行聚氣丹', uses: 500 },
-      { code: 'IMMORTAL100', content: '太上老君符籙', uses: 100 }
+
+    const talismans = [
+      "天地玄宗，萬氣本根",
+      "太上台星，應變無停",
+      "驅邪縛魅，保命護身",
+      "智慧明澈，福祿永馨",
+      "乾坤無極，太虛常清"
     ];
 
+    // 模擬從伺服器加載符咒數據
+    function loadCodes() {
+      fetch('https://neil-daoren.websim.ai/api/codes')
+        .then(response => response.json())
+        .then(data => {
+          codes = data;
+          updateCodeList();
+        })
+        .catch(error => {
+          console.error('Error loading codes:', error);
+          // 如果API調用失敗，嘗試從本地存儲加載
+          const savedCodes = localStorage.getItem('codes');
+          if (savedCodes) {
+            codes = JSON.parse(savedCodes);
+            updateCodeList();
+          }
+        });
+    }
+
+    // 模擬將符咒數據保存到伺服器和本地文件
+    function saveCodes() {
+      // 保存到伺服器
+      fetch('https://neil-daoren.websim.ai/api/save-codes', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(codes),
+      })
+      .then(response => response.json())
+      .then(data => console.log('Codes saved successfully:', data))
+      .catch((error) => console.error('Error saving codes:', error));
+
+      // 保存到本地存儲（作為備份）
+      localStorage.setItem('codes', JSON.stringify(codes));
+      
+      // 模擬寫入到代碼.txt文件
+      const codeText = codes.map(code => `${code.code},${code.description},${code.remainingUses}`).join('\n');
+      const blob = new Blob([codeText], { type: 'text/plain' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = '代碼.txt';
+      a.click();
+      URL.revokeObjectURL(a.href);
+
+      console.log("符咒已寫入代碼.txt文件");
+    }
+
+    function showRandomTalisman() {
+      const talismanElement = document.getElementById('talisman');
+      talismanElement.textContent = talismans[Math.floor(Math.random() * talismans.length)];
+    }
+
+    function redeemCode() {
+      const code = document.getElementById('redeem-code').value;
+      const result = document.getElementById('redeem-result');
+      const foundCodeIndex = codes.findIndex(c => c.code === code);
+      
+      if (foundCodeIndex !== -1) {
+        const foundCode = codes[foundCodeIndex];
+        if (foundCode.remainingUses > 0) {
+          foundCode.remainingUses--;
+          result.innerHTML = `太虛符咒之力已啟動: <span class="code">${foundCode.code}</span> - ${foundCode.description}<br>剩餘使用次數: ${foundCode.remainingUses}`;
+          result.className = 'success';
+          showRandomTalisman();
+          if (foundCode.remainingUses === 0) {
+            codes.splice(foundCodeIndex, 1);
+          }
+          saveCodes();
+        } else {
+          result.textContent = '此符咒力量已耗盡，無法再次使用';
+          result.className = 'error';
+        }
+      } else {
+        result.textContent = '此符咒無效，請重新參悟';
+        result.className = 'error';
+      }
+    }
+
+    function adminLogin() {
+      const password = document.getElementById('admin-password').value;
+      if (password === adminPassword) {
+        isAdminLoggedIn = true;
+        document.getElementById('admin-panel').style.display = 'block';
+        document.getElementById('admin-login').style.display = 'none';
+        updateCodeList();
+      } else {
+        alert('太虛密語有誤，請重新參悟');
+      }
+    }
+
+    function addCode() {
+      if (!isAdminLoggedIn) return;
+      
+      let code = document.getElementById('new-code').value;
+      const description = document.getElementById('code-description').value;
+      const limit = parseInt(document.getElementById('code-limit').value) || 1;
+      
+      if (!code) {
+        code = generateRandomCode();
+      }
+      
+      codes.push({ code, description, remainingUses: limit });
+      updateCodeList();
+      saveCodes();
+      
+      document.getElementById('new-code').value = '';
+      document.getElementById('code-description').value = '';
+      document.getElementById('code-limit').value = '';
+    }
+
+    function generateRandomCode() {
+      const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+      let result = '';
+      for (let i = 0; i < 8; i++) {
+        result += characters.charAt(Math.floor(Math.random() * characters.length));
+      }
+      document.getElementById('new-code').value = result;
+      return result;
+    }
+
     function updateCodeList() {
-      const tbody = document.querySelector('#codeList tbody');
-      tbody.innerHTML = '';
-      giftCodes.forEach((code, index) => {
-        const row = `
-          <tr>
-            <td>${code.code}</td>
-            <td>${code.content}</td>
-            <td>${code.uses}</td>
-            <td><button class="delete-btn" onclick="deleteCode(${index})">刪除</button></td>
-          </tr>
+      const codeList = document.getElementById('code-list');
+      codeList.innerHTML = '';
+      codes.forEach((code, index) => {
+        const codeItem = document.createElement('div');
+        codeItem.className = 'code-item';
+        codeItem.innerHTML = `
+          <p><strong>符咒口訣:</strong> <span class="code">${code.code}</span></p>
+          <p><strong>玄機:</strong> ${code.description}</p>
+          <p><strong>剩餘使用次數:</strong> ${code.remainingUses}</p>
+          <button onclick="editCode(${index})">修改符咒</button>
+          <button onclick="deleteCode(${index})">銷毀符咒</button>
         `;
-        tbody.innerHTML += row;
+        codeList.appendChild(codeItem);
       });
     }
 
-    function deleteCode(index) {
-      if (confirm('確定要刪除這個仙緣兌換碼嗎？')) {
-        giftCodes.splice(index, 1);
+    function editCode(index) {
+      if (!isAdminLoggedIn) return;
+      
+      const newDescription = prompt('請輸入新的符咒玄機', codes[index].description);
+      const newLimit = parseInt(prompt('請輸入新的使用次數限制', codes[index].remainingUses));
+      if (newDescription !== null && !isNaN(newLimit)) {
+        codes[index].description = newDescription;
+        codes[index].remainingUses = newLimit;
         updateCodeList();
+        saveCodes();
       }
     }
 
-    document.getElementById('adminLoginBtn').addEventListener('click', function() {
-      if (isAdminLoggedIn) {
-        alert('Neil道人已在此地。');
-        return;
-      }
-      const password = prompt('請輸入Neil道人所給仙緣碼：');
-      if (password === 'admin') {
-        alert('Neil道人降臨！');
-        isAdminLoggedIn = true;
-        document.getElementById('adminPanel').style.display = 'block';
-        this.textContent = 'Neil道人在此';
-        this.disabled = true;
+    function deleteCode(index) {
+      if (!isAdminLoggedIn) return;
+      
+      if (confirm('確定要銷毀這個符咒嗎？此舉將使其力量消散')) {
+        codes.splice(index, 1);
         updateCodeList();
-      } else {
-        alert('仙緣碼有誤，請重新參悟！');
+        saveCodes();
       }
-    });
+    }
 
-    document.querySelector('.redeem-form').addEventListener('submit', function(e) {
-      e.preventDefault();
-      const code = this.querySelector('input').value;
-      const giftCode = giftCodes.find(c => c.code === code);
-      if (giftCode) {
-        alert(`恭喜獲得仙緣：${giftCode.content}`);
-        giftCode.uses--;
-        if (giftCode.uses <= 0) {
-          giftCodes = giftCodes.filter(c => c !== giftCode);
-        }
-        updateCodeList();
-      } else {
-        alert('此仙緣碼已失效，請重新尋找仙緣');
-      }
-    });
-
-    document.getElementById('addCodeForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      if (!isAdminLoggedIn) {
-        alert('請先以Neil道人身份登入。');
-        return;
-      }
-      const code = this.querySelector('input[placeholder="新增仙緣碼"]').value;
-      const content = this.querySelector('input[placeholder="仙緣詳情"]').value;
-      const uses = parseInt(this.querySelector('input[placeholder="可用次數"]').value);
-      giftCodes.push({ code, content, uses });
-      alert(`新增仙緣碼：${code}\n內容：${content}\n可用次數：${uses}`);
-      updateCodeList();
-      this.reset();
-    });
-
-    document.getElementById('logoutBtn').addEventListener('click', function() {
-      isAdminLoggedIn = false;
-      document.getElementById('adminPanel').style.display = 'none';
-      document.getElementById('adminLoginBtn').textContent = 'Neil道人登入';
-      document.getElementById('adminLoginBtn').disabled = false;
-      alert('Neil道人已飄然而去。');
-    });
+    // 初始化時載入已儲存的符咒和顯示一條隨機符咒
+    loadCodes();
+    showRandomTalisman();
   </script>
 </body></html>
