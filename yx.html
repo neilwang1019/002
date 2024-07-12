@@ -1,28 +1,308 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Auto Reload Page</title>
+<html><head><base href="https://gift.cangui.com">
+<meta charset="UTF-8">
+<title>蒼顗道人的仙緣兌換系統</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&display=swap');
+
+  body {
+    font-family: 'Ma Shan Zheng', cursive;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 20px;
+    background-image: url('https://example.com/taoist-mountain.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    color: #333;
+  }
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.2);
+  }
+  h1, h2, h3 {
+    color: #8B4513;
+    text-align: center;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+  }
+  h1 {
+    font-size: 3em;
+    margin-bottom: 30px;
+  }
+  .login-options, .contact-options {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+  }
+  .login-btn, .contact-btn, .redeem-btn, .submit-btn {
+    margin: 0 10px;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: all 0.3s ease;
+    font-family: 'Ma Shan Zheng', cursive;
+  }
+  .login-btn {
+    background-color: #8B4513;
+    color: white;
+  }
+  .login-btn:hover {
+    background-color: #A0522D;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  }
+  .contact-btn {
+    color: white;
+  }
+  .contact-btn.fb {
+    background-color: #3b5998;
+  }
+  .contact-btn.email {
+    background-color: #D44638;
+  }
+  .contact-btn.discord {
+    background-color: #7289DA;
+  }
+  .contact-btn:hover {
+    opacity: 0.9;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  }
+  .redeem-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 30px;
+  }
+  input[type="text"], input[type="password"], input[type="number"] {
+    width: 300px;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 2px solid #8B4513;
+    border-radius: 50px;
+    font-family: 'Ma Shan Zheng', cursive;
+    font-size: 18px;
+    text-align: center;
+  }
+  .redeem-btn, .submit-btn {
+    background-color: #4CAF50;
+    color: white;
+  }
+  .redeem-btn:hover, .submit-btn:hover {
+    background-color: #45a049;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  }
+  .admin-panel {
+    margin-top: 40px;
+    border-top: 2px solid #8B4513;
+    padding-top: 30px;
+    display: none;
+  }
+  .logout-btn {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 20px;
+    transition: all 0.3s ease;
+    font-family: 'Ma Shan Zheng', cursive;
+  }
+  .logout-btn:hover {
+    background-color: #d32f2f;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  }
+  table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin-top: 30px;
+    background-color: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  }
+  th, td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  th {
+    background-color: #8B4513;
+    color: white;
+  }
+  tr:last-child td {
+    border-bottom: none;
+  }
+  .delete-btn {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Ma Shan Zheng', cursive;
+  }
+  .delete-btn:hover {
+    background-color: #d32f2f;
+    transform: translateY(-2px);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  }
+  .footer {
+    text-align: center;
+    margin-top: 40px;
+    font-style: italic;
+    color: #666;
+    font-size: 16px;
+  }
+</style>
 </head>
 <body>
-    <h1>這個頁面會在用戶載入網站後的10分鐘自動重新載入到指定的連結</h1>
-    <iframe src="https://forms.gle/V8DCq9ukgU3GZode6" width="100%" height="500px"></iframe>
-    <p>當前時間：<span id="time"></span></p>
-    <script>
-        // 設定10分鐘後自動重新載入頁面
-        setTimeout(function() {
-            window.location.href = 'https://forms.gle/V8DCq9ukgU3GZode6';
-        }, 600000); // 600000毫秒等於10分鐘
+  <div class="container">
+    <h1>Neil道人的仙緣兌換系統</h1>
+    
+    <div class="login-options">
+      <button id="adminLoginBtn" class="login-btn">Neil道人登入</button>
+    </div>
+    
+    <form class="redeem-form">
+      <input type="text" placeholder="輸入兌換碼" required>
+      <button type="submit" class="redeem-btn">兌換仙緣</button>
+    </form>
+    
+    <div id="adminPanel" class="admin-panel">
+      <h2>道長管理面板</h2>
+      <form id="addCodeForm">
+        <input type="text" placeholder="新增兌換碼" required>
+        <input type="text" placeholder="禮包內容" required>
+        <input type="number" placeholder="可用次數" required>
+        <button type="submit" class="submit-btn">新增仙緣兌換碼</button>
+      </form>
+      
+      <h3>已建立的仙緣兌換碼列表</h3>
+      <table id="codeList">
+        <thead>
+          <tr>
+            <th>兌換碼</th>
+            <th>仙緣內容</th>
+            <th>可用次數</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- 兌換碼列表將在這裡動態生成 -->
+        </tbody>
+      </table>
+      
+      <button id="logoutBtn" class="logout-btn">道長離開</button>
+    </div>
 
-        // 每秒更新一次當前時間顯示
-        function updateTime() {
-            var now = new Date();
-            var timeString = now.getHours() + ':' + now.getMinutes() + ':' + now.getSeconds();
-            document.getElementById('time').textContent = timeString;
+    <div class="contact-options">
+      <button class="contact-btn fb" onclick="window.open('https://www.facebook.com/canguidaoren', '_blank')">Facebook</button>
+      <button class="contact-btn email" onclick="window.location.href='mailto:cangui@taoistmail.com'">Email</button>
+      <button class="contact-btn discord" onclick="window.open('https://discord.gg/canguidaoren', '_blank')">Discord</button>
+    </div>
+
+    <div class="footer">
+      本系統由蒼顗道人Neil架設</a>
+    </div>
+  </div>
+
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    let isAdminLoggedIn = false;
+    let giftCodes = [
+      { code: 'XIANYU2023', content: '初次踏入修真之路禮包', uses: 1000 },
+      { code: 'QIGONG50', content: '五行聚氣丹', uses: 500 },
+      { code: 'IMMORTAL100', content: '太上老君符籙', uses: 100 }
+    ];
+
+    function updateCodeList() {
+      const tbody = document.querySelector('#codeList tbody');
+      tbody.innerHTML = '';
+      giftCodes.forEach((code, index) => {
+        const row = `
+          <tr>
+            <td>${code.code}</td>
+            <td>${code.content}</td>
+            <td>${code.uses}</td>
+            <td><button class="delete-btn" onclick="deleteCode(${index})">刪除</button></td>
+          </tr>
+        `;
+        tbody.innerHTML += row;
+      });
+    }
+
+    function deleteCode(index) {
+      if (confirm('確定要刪除這個仙緣兌換碼嗎？')) {
+        giftCodes.splice(index, 1);
+        updateCodeList();
+      }
+    }
+
+    document.getElementById('adminLoginBtn').addEventListener('click', function() {
+      if (isAdminLoggedIn) {
+        alert('Neil道人已在此地。');
+        return;
+      }
+      const password = prompt('請輸入Neil道人所給仙緣碼：');
+      if (password === 'taichi') {
+        alert('Neil道人降臨！');
+        isAdminLoggedIn = true;
+        document.getElementById('adminPanel').style.display = 'block';
+        this.textContent = 'Neil道人在此';
+        this.disabled = true;
+        updateCodeList();
+      } else {
+        alert('仙緣碼有誤，請重新參悟！');
+      }
+    });
+
+    document.querySelector('.redeem-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const code = this.querySelector('input').value;
+      const giftCode = giftCodes.find(c => c.code === code);
+      if (giftCode) {
+        alert(`恭喜獲得仙緣：${giftCode.content}`);
+        giftCode.uses--;
+        if (giftCode.uses <= 0) {
+          giftCodes = giftCodes.filter(c => c !== giftCode);
         }
-        setInterval(updateTime, 1000);  // 每秒更新一次時間顯示
-        updateTime();  // 頁面加載後立即更新一次時間顯示
-    </script>
-</body>
-</html>
+        updateCodeList();
+      } else {
+        alert('此仙緣碼已失效，請重新尋找仙緣');
+      }
+    });
+
+    document.getElementById('addCodeForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      if (!isAdminLoggedIn) {
+        alert('請先以Neil道人身份登入。');
+        return;
+      }
+      const code = this.querySelector('input[placeholder="新增仙緣碼"]').value;
+      const content = this.querySelector('input[placeholder="仙緣詳情"]').value;
+      const uses = parseInt(this.querySelector('input[placeholder="可用次數"]').value);
+      giftCodes.push({ code, content, uses });
+      alert(`新增仙緣碼：${code}\n內容：${content}\n可用次數：${uses}`);
+      updateCodeList();
+      this.reset();
+    });
+
+    document.getElementById('logoutBtn').addEventListener('click', function() {
+      isAdminLoggedIn = false;
+      document.getElementById('adminPanel').style.display = 'none';
+      document.getElementById('adminLoginBtn').textContent = 'Neil道人登入';
+      document.getElementById('adminLoginBtn').disabled = false;
+      alert('Neil道人已飄然而去。');
+    });
+  </script>
+</body></html>
